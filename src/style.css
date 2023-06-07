@@ -27,6 +27,21 @@ body {
 #todo-list > * {
   border-bottom: 1px solid rgb(170, 167, 167);
   height: 50px;
+  width: 100%;
+}
+
+#task-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  height: auto;
+  border: none;
+}
+
+#task-list > * {
+  width: 100%;
+  height: 63px;
 }
 
 #todo-list_heading {
@@ -53,6 +68,11 @@ i {
   display: flex;
   align-items: center;
   width: 100%;
+  border-bottom: 1px solid gray;
+}
+
+#reset-list:hover {
+  color: red;
 }
 
 #input {
@@ -71,19 +91,35 @@ i {
   outline: none;
 }
 
-.task {
+.item {
   display: flex;
   align-items: center;
   flex-direction: row;
   width: 100%;
+  border-bottom: 1px solid gray;
 }
 
-.task p {
-  width: 95%;
+.task {
+  width: 85%;
+  height: 90%;
+  border: none;
+  font-size: 16px;
 }
 
-.task i {
+.task:focus {
+  outline: none;
+}
+
+.task:hover {
+  cursor: default;
+}
+
+.item i {
   cursor: move;
+}
+
+.selected {
+  background-color: rgb(255, 248, 176);
 }
 
 .checkbox {
@@ -91,13 +127,29 @@ i {
   border: 2px solid rgb(134, 130, 130);
   width: auto;
   transform: scale(1.6);
+  cursor: pointer;
+}
+
+.checked {
+  text-decoration: line-through;
+}
+
+#remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pointer:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .clearSect {
   display: grid;
 }
 
-.clear {
+.clear-task {
   background-color: rgba(170, 166, 166, 0.222);
   height: 100%;
   width: 100%;
@@ -107,4 +159,8 @@ i {
   font-weight: bold;
   color: gray;
   cursor: pointer;
+}
+
+.clear-task:hover {
+  color: red;
 }

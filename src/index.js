@@ -1,54 +1,36 @@
 import './style.css';
+import List from './modules/add-remove.js';
 
-const list = [
-  {
-    index: 1,
-    description: 'Wash the dishes',
-    checked: false,
-  },
-  {
-    index: 2,
-    description: 'Complete to do list project',
-    checked: true,
-  },
-];
+const list = new List();
 
-const todoList = document.getElementById('todo-list');
-
-function createTaskElement(task) {
-  const div = document.createElement('div');
-  div.className = 'task';
-
-  const input = document.createElement('input');
-  input.classList.add('checkbox');
-  input.type = 'checkbox';
-  input.checked = task.checked;
-
-  const p = document.createElement('p');
-  p.innerText = task.description;
-
-  const ellipse = document.createElement('i');
-  ellipse.className = 'fa-solid fa-ellipsis-vertical';
-  ellipse.classList.add('ellipse');
-
-  div.appendChild(input);
-  div.appendChild(p);
-  div.appendChild(ellipse);
-
-  return div;
+function loadTasksFromLocalStorage() {
+  if (localStorage.getItem('tasks')) {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks.forEach((task) => {
+      const newTask = {
+        description: task.description,
+        index: task.index,
+        checked: task.checked,
+      };
+      list.add(newTask);
+    });
+  }
 }
 
-list.forEach((task) => {
-  const taskElement = createTaskElement(task);
-  todoList.appendChild(taskElement);
-});
+function handleAddTask(event) {
+  const add = event.target;
+  if (event.key === 'Enter' && add.value !== '') {
+    const newTask = {
+      description: add.value,
+      index: list.tasks.length + 1,
+      checked: false,
+    };
+    list.add(newTask);
+    add.value = '';
+  }
+}
 
-const clearSect = document.createElement('div');
-clearSect.className = 'clearSect';
+document.addEventListener('DOMContentLoaded', loadTasksFromLocalStorage);
 
-const clear = document.createElement('button');
-clear.innerText = 'Clear all completed';
-clear.className = 'clear';
-clearSect.appendChild(clear);
-
-todoList.appendChild(clearSect);
+const add = document.getElementById('input');
+add.addEventListener('keydown', handleAddTask);
