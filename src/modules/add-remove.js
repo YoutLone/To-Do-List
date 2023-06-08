@@ -1,15 +1,4 @@
-const ClearButton = () => {
-  const todoList = document.getElementById('todo-list');
-  const clearSect = document.createElement('div');
-  clearSect.className = 'clearSect';
-  const clear = document.createElement('button');
-  clear.innerText = 'Clear all completed';
-  clear.className = 'clear-task';
-  clearSect.appendChild(clear);
-  todoList.appendChild(clearSect);
-};
-
-ClearButton();
+import TodoTask from './todo-task.js';
 
 class List {
   constructor() {
@@ -27,11 +16,13 @@ class List {
   }
 
   remove(task) {
-    const index = task.index - 1;
-    this.tasks.splice(index, 1);
-    this.updateIndex(index);
-    this.updateLocalStorage();
-    this.reload();
+    const index = this.tasks.indexOf(task);
+    if (index !== -1) {
+      this.tasks.splice(index, 1);
+      this.updateIndex(index);
+      this.updateLocalStorage();
+      this.reload();
+    }
   }
 
   appendToDom(task) {
@@ -139,6 +130,35 @@ class List {
   updateLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
+
+  clearCompleted() {
+    const button = document.querySelector('.clear-task');
+    if (button) {
+      button.addEventListener('click', () => {
+        this.tasks = this.tasks.filter((task) => !task.checked);
+        this.updateLocalStorage();
+        this.reload();
+      });
+    }
+  }
 }
+
+const ClearButton = (list) => {
+  const todoList = document.getElementById('todo-list');
+  const clearSect = document.createElement('div');
+  clearSect.className = 'clearSect';
+  const clear = document.createElement('button');
+  clear.innerText = 'Clear all completed';
+  clear.className = 'clear-task';
+  clearSect.appendChild(clear);
+  todoList.appendChild(clearSect);
+
+  list.clearCompleted();
+};
+
+const list = new List();
+const task = new TodoTask('test', 1);
+task.check();
+ClearButton(list);
 
 export default List;
