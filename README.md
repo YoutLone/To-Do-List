@@ -52,7 +52,11 @@ WebpackDevServer
 - **User can delete tasks**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 🚀 Live Demo <a name="live-demo"></a>
 
+- [Live Demo Link](https://youtlone.github.io/To-Do-List/)
+- 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 ## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
