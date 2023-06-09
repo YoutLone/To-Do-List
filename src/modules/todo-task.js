@@ -7,7 +7,6 @@ class TodoTask {
 
   check() {
     this.checked = !this.checked;
-    console.log(this.checked);
   }
 
   updateDescription(description) {

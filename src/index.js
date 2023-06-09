@@ -24,7 +24,11 @@ function handleAddTask(event) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadTasksFromLocalStorage);
+document.addEventListener('DOMContentLoaded', () => {
+  loadTasksFromLocalStorage();
+  /* eslint-disable */
+  ClearButton();
+});
 
 const add = document.getElementById('input');
 add.addEventListener('keydown', handleAddTask);
@@ -33,3 +37,13 @@ const reset = document.getElementById('reset');
 reset.addEventListener('click', () => {
   list.reset();
 });
+
+function ClearButton() {
+  const clearButton = document.querySelector('.clear-task');
+  clearButton.addEventListener('click', () => {
+    const completedTasks = list.tasks.filter((task) => task.checked);
+    completedTasks.forEach((task) => {
+      list.remove(task);
+    });
+  });
+}

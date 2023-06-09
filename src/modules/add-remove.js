@@ -135,9 +135,12 @@ class List {
     const button = document.querySelector('.clear-task');
     if (button) {
       button.addEventListener('click', () => {
-        this.tasks = this.tasks.filter((task) => !task.checked);
-        this.updateLocalStorage();
-        this.reload();
+        const completedTasks = this.tasks.filter((task) => task.checked);
+        completedTasks.forEach((task) => {
+          if (task.checked) {
+            this.remove(task);
+          }
+        });
       });
     }
   }
