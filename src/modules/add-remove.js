@@ -146,22 +146,7 @@ class List {
   }
 }
 
-const ClearButton = (list) => {
-  const todoList = document.getElementById('todo-list');
-  const clearSect = document.createElement('div');
-  clearSect.className = 'clearSect';
-  const clear = document.createElement('button');
-  clear.innerText = 'Clear all completed';
-  clear.className = 'clear-task';
-  clearSect.appendChild(clear);
-  todoList.appendChild(clearSect);
-
-  list.clearCompleted();
-};
-
-const list = new List();
 const task = new TodoTask('test', 1);
 task.check();
-ClearButton(list);
 
 export default List;
