@@ -13,7 +13,7 @@ describe('Add task', () => {
     list.add(task);
   });
 
-  test('Add task to todo list', () => {
+  test('Add new task to todo list', () => {
     expect(list.tasks).toContain(task);
   });
 
