@@ -90,7 +90,13 @@ webpack-dev-server(http://localhost:8080)
 ```
 npm run build
 ```
+### Run tests
 
+To run tests, run the following command:
+
+```
+  npm test
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
