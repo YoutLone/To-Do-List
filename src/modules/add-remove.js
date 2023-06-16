@@ -132,17 +132,34 @@ class List {
   }
 
   clearCompleted() {
-    const button = document.querySelector('.clear-task');
-    if (button) {
-      button.addEventListener('click', () => {
-        const completedTasks = this.tasks.filter((task) => task.checked);
-        completedTasks.forEach((task) => {
-          if (task.checked) {
-            this.remove(task);
-          }
-        });
-      });
+    const completedTasks = this.tasks.filter((task) => task.checked);
+    completedTasks.forEach((task) => {
+      this.remove(task);
+    });
+  }
+
+  // Additional function for editing task description
+  editTaskDescription(index, newDescription) {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index].updateDescription(newDescription);
+      this.updateLocalStorage();
     }
+  }
+
+  // Additional function for editing completed task
+  editCompletedTask(index) {
+    if (index >= 0 && index < this.tasks.length) {
+      this.tasks[index].check = false; // Toggle the checked status
+      this.updateLocalStorage();
+    }
+  }
+
+  // Additional function for clearing all completed tasks
+  clearAllCompleted() {
+    const completedTasks = this.tasks.filter((task) => task.checked);
+    completedTasks.forEach((task) => {
+      this.remove(task);
+    });
   }
 }
 
