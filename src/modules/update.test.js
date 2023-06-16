@@ -21,7 +21,7 @@ describe('Update task', () => {
     expect(list.tasks[0].description).toBe(newDescription);
   });
 
-  test('Task is updated in local storage', () => {
+  test('Task will be updated in local storage', () => {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     expect(tasks[0].description).toBe('new test');
   });
@@ -58,7 +58,7 @@ describe('Clear check', () => {
     list.add(new TodoTask('test', 4));
   });
 
-  test('clear completed task', () => {
+  test('clear all completed task', () => {
     list.clearCompleted();
     expect(list.tasks.length).toBe(3);
   });
