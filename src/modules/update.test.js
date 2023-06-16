@@ -92,7 +92,7 @@ describe('Clear check', () => {
   });
 
   // Additional test for clear all completed function
-  test('Clear all of completed tasks', () => {
+  test('Clear all completed tasks', () => {
     list.tasks[0].check();
     list.tasks[1].check();
     list.tasks[2].check();
